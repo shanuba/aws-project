@@ -1,10 +1,15 @@
-version: 0.0
-os: linux
-files:
-  - source: /
-    destination: /var/www/html
-hooks:
-  AfterInstall:
-    - location: scripts/start_server.sh
-      timeout: 300
-      runas: root
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo installing dependencies...
+      - apt-get update && apt-get install -y zip
+  build: 
+    commands:
+      - echo Building application ...
+      - echo "Sample application built" > output.txt
+    post_build:
+        commands:
+        - echo Build complete! 
+    
+      
